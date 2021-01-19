@@ -94,6 +94,24 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+    /* CONTROl + ALT KEYS */
+    { ControlMask|Mod1Mask,             XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
+    { ControlMask|Mod1Mask,             XK_m,  spawn,         SHCMD("emacsclient -c -a '' --eval '(mu4e)'") },
+    { ControlMask|Mod1Mask,             XK_a,  spawn,         SHCMD("emacsclient -c -a '' --eval '(itechytony/day-view)'") },
+    { ControlMask|Mod1Mask,             XK_s,  spawn,         SHCMD("slack") },
+    { ControlMask|Mod1Mask,             XK_t,  spawn,         SHCMD("teams") },
+    { ControlMask|Mod1Mask,             XK_p,  spawn,         SHCMD("pamac-manager") },
+    { ControlMask|Mod1Mask,             XK_f,  spawn,         SHCMD("firefox") },
+    { ControlMask|Mod1Mask,             XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
+    { ControlMask|Mod1Mask,             XK_b,  spawn,         SHCMD("brave") },
+    { ControlMask|Mod1Mask,             XK_w,  spawn,         SHCMD("whatsdesk") },
+    { ControlMask|Mod1Mask,             XK_d,  spawn,         SHCMD("dbeaver") },
+    { ControlMask|Mod1Mask,             XK_z,  spawn,         SHCMD("zoom") },
+    { ControlMask|Mod1Mask,             XK_i,  spawn,         SHCMD("insomnia") },
+    { ControlMask|Mod1Mask,             XK_c,  spawn,         SHCMD("rofi -show calc") },
+    { ControlMask|Mod1Mask,             XK_o,  spawn,         SHCMD("picom-toggle") },
+    { ControlMask|Mod1Mask,             XK_v,  spawn,         SHCMD("pavucontrol") },
 };
 
 /* button definitions */
