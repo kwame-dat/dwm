@@ -112,6 +112,13 @@ static Key keys[] = {
     { ControlMask|Mod1Mask,             XK_c,  spawn,         SHCMD("rofi -show calc") },
     { ControlMask|Mod1Mask,             XK_o,  spawn,         SHCMD("picom-toggle") },
     { ControlMask|Mod1Mask,             XK_v,  spawn,         SHCMD("pavucontrol") },
+
+    /* ALT + SHIFT KEYS */
+    { Mod1Mask|ShiftMask,             XK_t,  spawn,         SHCMD("variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+    { Mod1Mask|ShiftMask,             XK_n,  spawn,         SHCMD("variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+    { Mod1Mask|ShiftMask,             XK_p,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+    { Mod1Mask|ShiftMask,             XK_f,  spawn,         SHCMD("variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+    { Mod1Mask|ShiftMask,             XK_u,  spawn,         SHCMD("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
 };
 
 /* button definitions */
