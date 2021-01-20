@@ -161,6 +161,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,  togglescratch,  {.v = musicscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_v,  togglescratch,  {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,  togglescratch,  {.v = webcamscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 
   /* CONTROl + ALT KEYS */
   { ControlMask|Mod1Mask,         XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
