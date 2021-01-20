@@ -8,3 +8,4 @@
 - actualfullscreen
 - centredmaster
 - cyclelayouts
+- vanitygaps
