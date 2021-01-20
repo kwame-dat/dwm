@@ -4,6 +4,5 @@
 - autostart
 - selfrestart
 - sticky
-- smartborders
 - namedscratchpads
 - actualfullscreen
