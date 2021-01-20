@@ -52,7 +52,7 @@ static const Rule rules[] = {
 	{ NULL,                          NULL,       "scratchpad",          0,           1,           -1,       's'},
 	{ NULL,                          NULL,       "musicscratchpad",     0,           1,           -1,       'm'},
 	{ NULL,                          NULL,       "vpnscratchpad",       0,           1,           -1,       'v'},
-	{ NULL,                          NULL,       "webcamscratchpad",       0,           1,           -1,       'w'},
+	{ NULL,                          NULL,       "webcamscratchpad",    0,           1,           -1,       'w'},
 };
 
 /* layout(s) */
