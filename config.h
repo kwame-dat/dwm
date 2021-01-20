@@ -135,6 +135,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_t,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
+  { MODKEY,                       XK_e,      spawn,         SHCMD("emacsclient -c -a ''") },
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
