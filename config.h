@@ -26,29 +26,33 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                         instance    title      tags mask    isfloating        monitor */
-	{ "Gimp",                        NULL,       NULL,      0,           1,                -1 },
-	{ "Firefox",                     NULL,       NULL,      1,           0,                -1 },
-  { "qutebrowser",                 NULL,       NULL,      1,           0,                -1 },
-  { "Google-chrome",               NULL,       NULL,      1,           0,                -1 },
-  { "Vivaldi-stable",              NULL,       NULL,      1,           0,                -1 },
-  { "Chromium",                    NULL,       NULL,      1,           0,                -1 },
-  { "Brave-browser",               NULL,       NULL,      1,           0,                -1 },
-  { "Firefox",                     NULL,       NULL,      1,           0,                -1 },
-  { "Emacs",                       NULL,       NULL,      2,           0,                -1 },
-  { "calibre",                     NULL,       NULL,      2,           0,                -1 },
-  { "Thunderbird",                 NULL,       NULL,      2,           0,                -1 },
-  { "jetbrains-phpstorm",          NULL,       NULL,      2,           0,                -1 },
-  { "whatsdesk",                   NULL,       NULL,      1 << 2,      0,                -1 },
-  { "Signal",                      NULL,       NULL,      1 << 2,      0,                -1 },
-  { "Slack",                       NULL,       NULL,      1 << 2,      0,                -1 },
-  { "Microsoft Teams - Preview",   NULL,       NULL,      1 << 3,      0,                -1 },
-  { "zoom",                        NULL,       NULL,      1 << 3,      0,                -1 },
-  { "Dbeaver",                     NULL,       NULL,      1 << 4,      0,                -1 },
-  { "Insomnia",                    NULL,       NULL,      1 << 5,      0,                -1 },
-  { "Postman",                     NULL,       NULL,      1 << 5,      0,                -1 },
-  { "VirtualBox Manager",          NULL,       NULL,      1 << 6,      0,                -1 },
-  { "Nextcloud",                   NULL,       NULL,      1 << 8,      0,                -1 },
+	/* class                         instance    title                  tags mask    isfloating   monitor  scratch key */
+	{ "Gimp",                        NULL,       NULL,                  0,           1,           -1,       0},
+	{ "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
+  { "qutebrowser",                 NULL,       NULL,                  1,           0,           -1,       0},
+  { "Google-chrome",               NULL,       NULL,                  1,           0,           -1,       0},
+  { "Vivaldi-stable",              NULL,       NULL,                  1,           0,           -1,       0},
+  { "Chromium",                    NULL,       NULL,                  1,           0,           -1,       0},
+  { "Brave-browser",               NULL,       NULL,                  1,           0,           -1,       0},
+  { "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
+  { "Emacs",                       NULL,       NULL,                  2,           0,           -1,       0},
+  { "calibre",                     NULL,       NULL,                  2,           0,           -1,       0},
+  { "Thunderbird",                 NULL,       NULL,                  2,           0,           -1,       0},
+  { "jetbrains-phpstorm",          NULL,       NULL,                  2,           0,           -1,       0},
+  { "whatsdesk",                   NULL,       NULL,                  1 << 2,      0,           -1,       0},
+  { "Signal",                      NULL,       NULL,                  1 << 2,      0,           -1,       0},
+  { "Slack",                       NULL,       NULL,                  1 << 2,      0,           -1,       0},
+  { "Microsoft Teams - Preview",   NULL,       NULL,                  1 << 3,      0,           -1,       0},
+  { "zoom",                        NULL,       NULL,                  1 << 3,      0,           -1,       0},
+  { "Dbeaver",                     NULL,       NULL,                  1 << 4,      0,           -1,       0},
+  { "Insomnia",                    NULL,       NULL,                  1 << 5,      0,           -1,       0},
+  { "Postman",                     NULL,       NULL,                  1 << 5,      0,           -1,       0},
+  { "VirtualBox Manager",          NULL,       NULL,                  1 << 6,      0,           -1,       0},
+  { "Nextcloud",                   NULL,       NULL,                  1 << 8,      0,           -1,       0},
+	{ NULL,                          NULL,       "scratchpad",          0,           1,           -1,       's'},
+	{ NULL,                          NULL,       "musicscratchpad",     0,           1,           -1,       'm'},
+	{ NULL,                          NULL,       "vpnscratchpad",       0,           1,           -1,       'v'},
+	{ NULL,                          NULL,       "webcamscratchpad",       0,           1,           -1,       'w'},
 };
 
 /* layout(s) */
@@ -79,6 +83,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL}; 
+static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicscratchpad", "-e", "ncmpcpp", NULL}; 
+static const char *vpnscratchpadcmd[] = {"v", "alacritty", "-t", "vpnscratchpad", "-e", "vpn", NULL}; 
+static const char *webcamscratchpadcmd[] = {"w", "mpv", "--title=", "webcamscratchpad", "av://v4l2:/dev/video0 --profile low-latency --untimed", NULL}; 
 
 #include "selfrestart.c"
 #include <X11/XF86keysym.h>
@@ -99,9 +107,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_grave,  setlayout,      {0} },
 	{ MODKEY,                       XK_space,  spawn,          SHCMD("rofi -show combi") },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -125,10 +133,14 @@ static Key keys[] = {
 
   /* MOD +.....  KEYS */
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
+	{ MODKEY,                       XK_t,      togglescratch,  {.v = scratchpadcmd } },
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
   { MODKEY|ShiftMask,             XK_r,  self_restart,  {0} },
+	{ MODKEY|ShiftMask,             XK_m,  togglescratch,  {.v = musicscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_v,  togglescratch,  {.v = vpnscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_w,  togglescratch,  {.v = webcamscratchpadcmd } },
 
   /* CONTROl + ALT KEYS */
   { ControlMask|Mod1Mask,         XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
