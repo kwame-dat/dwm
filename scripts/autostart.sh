@@ -40,7 +40,6 @@ xrdb ~/.Xresources
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
-run dwmblocks &
 run variety &
 run nm-applet &
 run xfce4-power-manager &
@@ -49,6 +48,7 @@ picom &
 dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xmodmap ~/.Xmodmap &
+dwmblocks &
 
 # starting user applications at boot time
 /usr/bin/emacs --daemon &
@@ -56,4 +56,4 @@ copyq &
 run nextcloud &
 run syncthing -no-browser &
 run sudo mount -a &
-#run kdeconnect-indicator &
+run kdeconnect-indicator &
