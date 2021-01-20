@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -81,6 +81,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 
 #include "selfrestart.c"
+#include <X11/XF86keysym.h>
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -149,6 +150,23 @@ static Key keys[] = {
   { Mod1Mask|ShiftMask,           XK_p,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
   { Mod1Mask|ShiftMask,           XK_f,  spawn,         SHCMD("variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
   { Mod1Mask|ShiftMask,           XK_u,  spawn,         SHCMD("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+
+  /* MULTIMEDIA KEYS */
+  { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
+  { 0, XF86XK_AudioRaiseVolume,	    spawn,		SHCMD("amixer -q set Master 2%+") },
+  { 0, XF86XK_AudioLowerVolume,	    spawn,		SHCMD("amixer -q set Master 2%-") },
+  { 0, XF86XK_AudioPrev,		        spawn,		SHCMD("playerctl previous") },
+  { 0, XF86XK_AudioNext,		        spawn,		SHCMD("playerctl next") },
+  { 0, XF86XK_AudioPause,		        spawn,		SHCMD("playerctl play-pause") },
+  { 0, XF86XK_AudioPlay,		        spawn,		SHCMD("playerctl play-pause") },
+  { 0, XF86XK_AudioStop,		        spawn,		SHCMD("playerctl stop") },
+  { 0, XF86XK_AudioRewind,	        spawn,		SHCMD("mpc seek -10") },
+  { 0, XF86XK_AudioForward,	        spawn,		SHCMD("mpc seek +10") },
+  { 0, XF86XK_AudioMicMute,	        spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+  { 0, XF86XK_PowerOff,		          spawn,		SHCMD("sysact") },
+  { 0, XF86XK_ScreenSaver,	        spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
+  { 0, XF86XK_MonBrightnessUp,	    spawn,		SHCMD("xbacklight -inc 2") },
+  { 0, XF86XK_MonBrightnessDown,    spawn,		SHCMD("xbacklight -dec 2") },
 };
 
 /* button definitions */
