@@ -4,3 +4,4 @@
 - autostart
 - selfrestart
 - sticky
+- smartborders
