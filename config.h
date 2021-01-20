@@ -26,9 +26,29 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class                         instance    title      tags mask    isfloating        monitor */
+	{ "Gimp",                        NULL,       NULL,      0,           1,                -1 },
+	{ "Firefox",                     NULL,       NULL,      1,           0,                -1 },
+  { "qutebrowser",                 NULL,       NULL,      1,           0,                -1 },
+  { "Google-chrome",               NULL,       NULL,      1,           0,                -1 },
+  { "Vivaldi-stable",              NULL,       NULL,      1,           0,                -1 },
+  { "Chromium",                    NULL,       NULL,      1,           0,                -1 },
+  { "Brave-browser",               NULL,       NULL,      1,           0,                -1 },
+  { "Firefox",                     NULL,       NULL,      1,           0,                -1 },
+  { "Emacs",                       NULL,       NULL,      2,           0,                -1 },
+  { "calibre",                     NULL,       NULL,      2,           0,                -1 },
+  { "Thunderbird",                 NULL,       NULL,      2,           0,                -1 },
+  { "jetbrains-phpstorm",          NULL,       NULL,      2,           0,                -1 },
+  { "whatsdesk",                   NULL,       NULL,      1 << 2,      0,                -1 },
+  { "Signal",                      NULL,       NULL,      1 << 2,      0,                -1 },
+  { "Slack",                       NULL,       NULL,      1 << 2,      0,                -1 },
+  { "Microsoft Teams - Preview",   NULL,       NULL,      1 << 3,      0,                -1 },
+  { "zoom",                        NULL,       NULL,      1 << 3,      0,                -1 },
+  { "Dbeaver",                     NULL,       NULL,      1 << 4,      0,                -1 },
+  { "Insomnia",                    NULL,       NULL,      1 << 5,      0,                -1 },
+  { "Postman",                     NULL,       NULL,      1 << 5,      0,                -1 },
+  { "VirtualBox Manager",          NULL,       NULL,      1 << 6,      0,                -1 },
+  { "Nextcloud",                   NULL,       NULL,      1 << 8,      0,                -1 },
 };
 
 /* layout(s) */
