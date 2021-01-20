@@ -80,6 +80,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 
+#include "selfrestart.c"
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show combi") },
@@ -121,6 +123,7 @@ static Key keys[] = {
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
+  { MODKEY|ShiftMask,             XK_r,  self_restart,  {0} },
 
   /* CONTROl + ALT KEYS */
   { ControlMask|Mod1Mask,         XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
