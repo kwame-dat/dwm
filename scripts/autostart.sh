@@ -40,6 +40,7 @@ xrdb ~/.Xresources
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
+run dwmblocks &
 run variety &
 run nm-applet &
 run xfce4-power-manager &
