@@ -99,7 +99,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_grave,  setlayout,           {0} },
+	{ MODKEY,                       XK_grave,  setlayout,      {0} },
 	{ MODKEY,                       XK_space,  spawn,          SHCMD("rofi -show combi") },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -119,30 +119,33 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
-    /* CONTROl + ALT KEYS */
-    { ControlMask|Mod1Mask,             XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
-    { ControlMask|Mod1Mask,             XK_m,  spawn,         SHCMD("emacsclient -c -a '' --eval '(mu4e)'") },
-    { ControlMask|Mod1Mask,             XK_a,  spawn,         SHCMD("emacsclient -c -a '' --eval '(itechytony/day-view)'") },
-    { ControlMask|Mod1Mask,             XK_s,  spawn,         SHCMD("slack") },
-    { ControlMask|Mod1Mask,             XK_t,  spawn,         SHCMD("teams") },
-    { ControlMask|Mod1Mask,             XK_p,  spawn,         SHCMD("pamac-manager") },
-    { ControlMask|Mod1Mask,             XK_f,  spawn,         SHCMD("firefox") },
-    { ControlMask|Mod1Mask,             XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
-    { ControlMask|Mod1Mask,             XK_b,  spawn,         SHCMD("brave") },
-    { ControlMask|Mod1Mask,             XK_w,  spawn,         SHCMD("whatsdesk") },
-    { ControlMask|Mod1Mask,             XK_d,  spawn,         SHCMD("dbeaver") },
-    { ControlMask|Mod1Mask,             XK_z,  spawn,         SHCMD("zoom") },
-    { ControlMask|Mod1Mask,             XK_i,  spawn,         SHCMD("insomnia") },
-    { ControlMask|Mod1Mask,             XK_c,  spawn,         SHCMD("rofi -show calc") },
-    { ControlMask|Mod1Mask,             XK_o,  spawn,         SHCMD("picom-toggle") },
-    { ControlMask|Mod1Mask,             XK_v,  spawn,         SHCMD("pavucontrol") },
+  /* MOD + SHIFT KEYS */
+	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
 
-    /* ALT + SHIFT KEYS */
-    { Mod1Mask|ShiftMask,             XK_t,  spawn,         SHCMD("variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-    { Mod1Mask|ShiftMask,             XK_n,  spawn,         SHCMD("variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-    { Mod1Mask|ShiftMask,             XK_p,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-    { Mod1Mask|ShiftMask,             XK_f,  spawn,         SHCMD("variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-    { Mod1Mask|ShiftMask,             XK_u,  spawn,         SHCMD("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  /* CONTROl + ALT KEYS */
+  { ControlMask|Mod1Mask,         XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
+  { ControlMask|Mod1Mask,         XK_m,  spawn,         SHCMD("emacsclient -c -a '' --eval '(mu4e)'") },
+  { ControlMask|Mod1Mask,         XK_a,  spawn,         SHCMD("emacsclient -c -a '' --eval '(itechytony/day-view)'") },
+  { ControlMask|Mod1Mask,         XK_s,  spawn,         SHCMD("slack") },
+  { ControlMask|Mod1Mask,         XK_t,  spawn,         SHCMD("teams") },
+  { ControlMask|Mod1Mask,         XK_p,  spawn,         SHCMD("pamac-manager") },
+  { ControlMask|Mod1Mask,         XK_f,  spawn,         SHCMD("firefox") },
+  { ControlMask|Mod1Mask,         XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
+  { ControlMask|Mod1Mask,         XK_b,  spawn,         SHCMD("brave") },
+  { ControlMask|Mod1Mask,         XK_w,  spawn,         SHCMD("whatsdesk") },
+  { ControlMask|Mod1Mask,         XK_d,  spawn,         SHCMD("dbeaver") },
+  { ControlMask|Mod1Mask,         XK_z,  spawn,         SHCMD("zoom") },
+  { ControlMask|Mod1Mask,         XK_i,  spawn,         SHCMD("insomnia") },
+  { ControlMask|Mod1Mask,         XK_c,  spawn,         SHCMD("rofi -show calc") },
+  { ControlMask|Mod1Mask,         XK_o,  spawn,         SHCMD("picom-toggle") },
+  { ControlMask|Mod1Mask,         XK_v,  spawn,         SHCMD("pavucontrol") },
+
+  /* ALT + SHIFT KEYS */
+  { Mod1Mask|ShiftMask,           XK_t,  spawn,         SHCMD("variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  { Mod1Mask|ShiftMask,           XK_n,  spawn,         SHCMD("variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  { Mod1Mask|ShiftMask,           XK_p,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  { Mod1Mask|ShiftMask,           XK_f,  spawn,         SHCMD("variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  { Mod1Mask|ShiftMask,           XK_u,  spawn,         SHCMD("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
 };
 
 /* button definitions */
