@@ -205,6 +205,9 @@ static Key keys[] = {
   { 0, XF86XK_ScreenSaver,	        spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
   { 0, XF86XK_MonBrightnessUp,	    spawn,		SHCMD("xbacklight -inc 2") },
   { 0, XF86XK_MonBrightnessDown,    spawn,		SHCMD("xbacklight -dec 2") },
+
+  /* MISC KEYS */
+  { ControlMask|Mod1Mask,         XK_Delete,  spawn,         SHCMD("xkill") },
 };
 
 /* button definitions */
