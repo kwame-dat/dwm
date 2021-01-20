@@ -122,6 +122,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
+
+  /* MOD +.....  KEYS */
+	{ MODKEY,                       XK_s,      togglesticky,   {0} },
+
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
   { MODKEY|ShiftMask,             XK_r,  self_restart,  {0} },
