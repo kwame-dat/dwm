@@ -134,6 +134,7 @@ static Key keys[] = {
   /* MOD +.....  KEYS */
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_t,      togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },

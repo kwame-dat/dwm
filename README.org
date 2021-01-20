@@ -6,3 +6,4 @@
 - sticky
 - smartborders
 - namedscratchpads
+- actualfullscreen
