@@ -6,3 +6,4 @@
 - sticky
 - namedscratchpads
 - actualfullscreen
+- centredmaster
