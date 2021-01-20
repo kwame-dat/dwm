@@ -132,6 +132,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
+  /* MOD + CONTROL KEYS */
+	{ MODKEY|ControlMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 
   /* MOD +.....  KEYS */
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
