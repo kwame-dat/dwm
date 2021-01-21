@@ -149,15 +149,13 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
-  /* MOD + CONTROL KEYS */
-	{ MODKEY|ControlMask,		        XK_comma,  cyclelayout,    {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
-
   /* MOD +.....  KEYS */
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_t,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
   { MODKEY,                       XK_e,      spawn,         SHCMD("emacsclient -c -a ''") },
+	{ MODKEY,		        XK_bracketright,  cyclelayout,    {.i = -1 } },
+	{ MODKEY,           XK_bracketleft, cyclelayout,    {.i = +1 } },
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
