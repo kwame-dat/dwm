@@ -10,3 +10,4 @@
 - cyclelayouts
 - vanitygaps
 - rotatestack
+- systray
