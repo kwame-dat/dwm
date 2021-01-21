@@ -72,7 +72,6 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
-#include "selfrestart.c"
 #include <X11/XF86keysym.h>
 
 static const Layout layouts[] = {
@@ -108,7 +107,6 @@ static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL
 static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicscratchpad", "-e", "ncmpcpp", NULL}; 
 static const char *vpnscratchpadcmd[] = {"v", "alacritty", "-t", "vpnscratchpad", "-e", "vpn", NULL}; 
 static const char *webcamscratchpadcmd[] = {"w", "mpv", "--title=", "webcamscratchpad", "av://v4l2:/dev/video0 --profile low-latency --untimed", NULL}; 
-
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -159,7 +157,6 @@ static Key keys[] = {
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
-  { MODKEY|ShiftMask,             XK_r,  self_restart,  {0} },
 	{ MODKEY|ShiftMask,             XK_m,  togglescratch,  {.v = musicscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_v,  togglescratch,  {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,  togglescratch,  {.v = webcamscratchpadcmd } },

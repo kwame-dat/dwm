@@ -2,7 +2,6 @@
 
 * Patches
 - autostart
-- selfrestart
 - sticky
 - namedscratchpads
 - actualfullscreen
