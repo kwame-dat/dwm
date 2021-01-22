@@ -10,3 +10,4 @@
 - vanitygaps
 - rotatestack
 - systray
+- restartsig
