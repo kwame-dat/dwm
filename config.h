@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -14,17 +14,22 @@ static const unsigned int gappov    = 40;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Cascadia Code:size=10" };
-static const char dmenufont[]       = "Cascadia Code:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char *fonts[]              = {"Cascadia Code:size=8",
+                                        "JoyPixels:size=8:antialias=true:autohint=true",
+                                        "FontAwesome:size=8:antialias=true:autohint=true",
+                                        };
+static const char dmenufont[]       = "Cascadia Code:size=9";
+static const char col_gray1[]           = "#1a1a1a";
+static const char col_gray2[]           = "#1a1a1a";
+static const char col_gray3[]           = "#96b5B4";
+static const char col_gray4[]           = "#d7d7d7";
+static const char col_blue[]            = "#9765F4";
+static const char col_red[]             = "#8f3d3d";
+static const char col_yellow[]          = "#b38c00";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_red,  col_blue  },
 };
 
 /* tagging */
@@ -100,7 +105,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL}; 
@@ -127,8 +132,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_grave,  setlayout,      {0} },
-	{ MODKEY,                       XK_space,  spawn,          SHCMD("rofi -show combi") },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -148,16 +151,17 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
   /* MOD +.....  KEYS */
-	{ MODKEY,                       XK_s,      togglesticky,   {0} },
-	{ MODKEY,                       XK_t,      togglescratch,  {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
-  { MODKEY,                       XK_e,      spawn,         SHCMD("emacsclient -c -a ''") },
-	{ MODKEY,		        XK_bracketright,  cyclelayout,    {.i = -1 } },
-	{ MODKEY,           XK_bracketleft, cyclelayout,    {.i = +1 } },
+	{ MODKEY,                       XK_space,         spawn,             SHCMD("rofi -show combi") },
+	{ MODKEY,                       XK_s,             togglesticky,      {0} },
+	{ MODKEY,                       XK_t,             togglescratch,     {.v = scratchpadcmd } },
+	{ MODKEY,                       XK_f,             togglefullscr,     {0} },
+  { MODKEY,                       XK_e,             spawn,             SHCMD("emacsclient -c -a ''") },
+	{ MODKEY,		                    XK_bracketright,  cyclelayout,       {.i = -1 } },
+	{ MODKEY,                       XK_bracketleft,   cyclelayout,       {.i = +1 } },
+	{ MODKEY,                       XK_grave,         togglescratch,     {.v = musicscratchpadcmd } },
 
   /* MOD + SHIFT KEYS */
 	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
-	{ MODKEY|ShiftMask,             XK_m,  togglescratch,  {.v = musicscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_v,  togglescratch,  {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,  togglescratch,  {.v = webcamscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
