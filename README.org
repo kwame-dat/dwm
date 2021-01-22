@@ -11,3 +11,4 @@
 - rotatestack
 - systray
 - restartsig
+- focusonnetactive
