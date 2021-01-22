@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function run {
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
 multi-monitor &
 # xrandr --output eDP1 --auto --output DP1 --auto --scale 2x2 --right-of eDP1 &
 
@@ -27,20 +34,19 @@ xrdb ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
-variety &
-nm-applet &
-xfce4-power-manager &
-picom &
-dunst &
+run variety &
+run nm-applet &
+run xfce4-power-manager &
+run picom &
+run dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xmodmap ~/.Xmodmap &
-dwmblocks &
+run dwmblocks &
 
 # starting user applications at boot time
-/usr/bin/emacs --daemon &
-copyq &
-nextcloud &
-syncthing -no-browser &
-kdeconnect-indicator &
-caffeine-indicator &
+run /usr/bin/emacs --daemon &
+run copyq &
+run nextcloud &
+run syncthing -no-browser &
+run kdeconnect-indicator &
 sudo mount -a &
