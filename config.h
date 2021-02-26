@@ -40,34 +40,35 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                         instance    title                  tags mask    isfloating   monitor  scratch key */
-	{ "Gimp",                        NULL,       NULL,                  0,           1,           -1,       0},
-	{ "mpv",                         NULL,       NULL,                  0,           1,           -1,       0},
-	{ "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
-  { "qutebrowser",                 NULL,       NULL,                  1,           0,           -1,       0},
-  { "Google-chrome",               NULL,       NULL,                  1,           0,           -1,       0},
-  { "Vivaldi-stable",              NULL,       NULL,                  1,           0,           -1,       0},
-  { "Chromium",                    NULL,       NULL,                  1,           0,           -1,       0},
-  { "Brave-browser",               NULL,       NULL,                  1,           0,           -1,       0},
-  { "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
-  { "Emacs",                       NULL,       NULL,                  2,           0,           -1,       0},
-  { "calibre",                     NULL,       NULL,                  2,           0,           -1,       0},
-  { "Evolution",                   NULL,       NULL,                  2,           0,           -1,       0},
-  { "jetbrains-phpstorm",          NULL,       NULL,                  2,           0,           -1,       0},
-  { "whatsdesk",                   NULL,       NULL,                  1 << 2,      0,           -1,       0},
-  { "Signal",                      NULL,       NULL,                  1 << 2,      0,           -1,       0},
-  { "Slack",                       NULL,       NULL,                  1 << 2,      0,           -1,       0},
-  { "Microsoft Teams - Preview",   NULL,       NULL,                  1 << 3,      0,           -1,       0},
-  { "zoom",                        NULL,       NULL,                  1 << 3,      0,           -1,       0},
-  { "DBeaver",                     NULL,       NULL,                  1 << 4,      0,           -1,       0},
-  { "Insomnia",                    NULL,       NULL,                  1 << 5,      0,           -1,       0},
-  { "Postman",                     NULL,       NULL,                  1 << 5,      0,           -1,       0},
-  { "VirtualBox Manager",          NULL,       NULL,                  1 << 6,      0,           -1,       0},
-  { "Nextcloud",                   NULL,       NULL,                  1 << 8,      0,           -1,       0},
-	{ NULL,                          NULL,       "scratchpad",          0,           1,           -1,       's'},
-	{ NULL,                          NULL,       "musicscratchpad",     0,           1,           -1,       'm'},
-	{ NULL,                          NULL,       "vpnscratchpad",       0,           1,           -1,       'v'},
-	{ NULL,                          NULL,       "webcamscratchpad",    0,           1,           -1,       'w'},
+	/* class                         instance    title                      tags mask    isfloating   monitor  scratch key */
+	{ "Gimp",                        NULL,       NULL,                      0,           1,           -1,       0},
+	{ "mpv",                         NULL,       NULL,                      0,           1,           -1,       0},
+	{ "Firefox",                     NULL,       NULL,                      1,           0,           -1,       0},
+  { "qutebrowser",                 NULL,       NULL,                      1,           0,           -1,       0},
+  { "Google-chrome",               NULL,       NULL,                      1,           0,           -1,       0},
+  { "Vivaldi-stable",              NULL,       NULL,                      1,           0,           -1,       0},
+  { "Chromium",                    NULL,       NULL,                      1,           0,           -1,       0},
+  { "Brave-browser",               NULL,       NULL,                      1,           0,           -1,       0},
+  { "Firefox",                     NULL,       NULL,                      1,           0,           -1,       0},
+  { "Emacs",                       NULL,       NULL,                      2,           0,           -1,       0},
+  { "calibre",                     NULL,       NULL,                      2,           0,           -1,       0},
+  { "Evolution",                   NULL,       NULL,                      2,           0,           -1,       0},
+  { "jetbrains-phpstorm",          NULL,       NULL,                      2,           0,           -1,       0},
+  { "whatsdesk",                   NULL,       NULL,                      1 << 2,      0,           -1,       0},
+  { "Signal",                      NULL,       NULL,                      1 << 2,      0,           -1,       0},
+  { "Slack",                       NULL,       NULL,                      1 << 2,      0,           -1,       0},
+  { "Microsoft Teams - Preview",   NULL,       NULL,                      1 << 3,      0,           -1,       0},
+  { "zoom",                        NULL,       NULL,                      1 << 3,      0,           -1,       0},
+  { "DBeaver",                     NULL,       NULL,                      1 << 4,      0,           -1,       0},
+  { "Insomnia",                    NULL,       NULL,                      1 << 5,      0,           -1,       0},
+  { "Postman",                     NULL,       NULL,                      1 << 5,      0,           -1,       0},
+  { "VirtualBox Manager",          NULL,       NULL,                      1 << 6,      0,           -1,       0},
+  { "Nextcloud",                   NULL,       NULL,                      1 << 8,      0,           -1,       0},
+	{ NULL,                          NULL,       "scratchPad",              0,           1,           -1,       's'},
+	{ NULL,                          NULL,       "musicScratchPad",         0,           1,           -1,       'm'},
+	{ NULL,                          NULL,       "vpnScratchPad",           0,           1,           -1,       'v'},
+	{ NULL,                          NULL,       "webcamScratchPad",        0,           1,           -1,       'w'},
+	{ NULL,                          NULL,       "runscopeScratchPad",      0,           1,           -1,       'r'},
 };
 
 /* layout(s) */
@@ -108,10 +109,42 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
-static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchpad", NULL}; 
-static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicscratchpad", "-e", "ncmpcpp", NULL}; 
-static const char *vpnscratchpadcmd[] = {"v", "alacritty", "-t", "vpnscratchpad", "-e", "vpn", NULL}; 
-static const char *webcamscratchpadcmd[] = {"w", "mpv", "--title=", "webcamscratchpad", "av://v4l2:/dev/video0 --profile low-latency --untimed", NULL}; 
+static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchPad", NULL}; 
+static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicScratchPad", "-e", "ncmpcpp", NULL}; 
+
+static const char *vpnscratchpadcmd[] = {
+  "v",
+  "alacritty",
+  "--title",
+  "vpnScratchPad",
+  "--command",
+  "sudo",
+  "openvpn",
+  "--config",
+  "/home/tonya/Documents/Work/3Resources/vpn/Connection.ovpn",
+  NULL
+};
+
+static const char *webcamscratchpadcmd[] = {
+  "w",
+  "mplayer",
+  "tv://device=/dev/video01",
+  "-title",
+  "webcamScratchPad",
+  NULL
+};
+
+static const char *runscopeScratchpadCmd[] = {
+  "r",
+  "alacritty",
+  "--title",
+  "runscopeScratchPad",
+  "--command",
+  "runscope-radar",
+  "-f",
+  "/home/tonya/Documents/Work/3Resources/runscope/radar.conf",
+  NULL
+};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -165,6 +198,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,             togglescratch,     {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,             togglescratch,     {.v = webcamscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,             togglescratch,     {.v = musicscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_r,             togglescratch,     {.v = runscopeScratchpadCmd } },
 	{ MODKEY|ShiftMask,             XK_j,             rotatestack,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,             rotatestack,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,             SHCMD("flameshot gui")}, 
