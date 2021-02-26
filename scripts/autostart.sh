@@ -7,9 +7,6 @@ function run {
   fi
 }
 
-multi-monitor &
-# xrandr --output eDP1 --auto --output DP1 --auto --scale 2x2 --right-of eDP1 &
-
 # cursor active at boot
 xsetroot -cursor_name left_ptr &
 
