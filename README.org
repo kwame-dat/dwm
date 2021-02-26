@@ -12,3 +12,4 @@
 - systray
 - restartsig
 - focusonnetactive
+- alwayscenter
