@@ -14,12 +14,12 @@ static const unsigned int gappov    = 40;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = {"Cascadia Code:size=8",
+static const char *fonts[]              = {"JetBrains Mono:size=8",
                                         "JoyPixels:size=8:antialias=true:autohint=true",
                                         "FontAwesome:size=8:antialias=true:autohint=true",
                                         };
-static const char dmenufont[]       = "Cascadia Code:size=9";
-static const char col_gray1[]           = "#1a1a1a";
+static const char dmenufont[]       = "JetBrains Mono:size=8";
+static const char col_gray1[]           = "#0b1c2c";
 static const char col_gray2[]           = "#1a1a1a";
 static const char col_gray3[]           = "#96b5B4";
 static const char col_gray4[]           = "#d7d7d7";
@@ -42,6 +42,7 @@ static const Rule rules[] = {
 	 */
 	/* class                         instance    title                  tags mask    isfloating   monitor  scratch key */
 	{ "Gimp",                        NULL,       NULL,                  0,           1,           -1,       0},
+	{ "mpv",                         NULL,       NULL,                  0,           1,           -1,       0},
 	{ "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
   { "qutebrowser",                 NULL,       NULL,                  1,           0,           -1,       0},
   { "Google-chrome",               NULL,       NULL,                  1,           0,           -1,       0},
@@ -51,14 +52,14 @@ static const Rule rules[] = {
   { "Firefox",                     NULL,       NULL,                  1,           0,           -1,       0},
   { "Emacs",                       NULL,       NULL,                  2,           0,           -1,       0},
   { "calibre",                     NULL,       NULL,                  2,           0,           -1,       0},
-  { "Thunderbird",                 NULL,       NULL,                  2,           0,           -1,       0},
+  { "Evolution",                   NULL,       NULL,                  2,           0,           -1,       0},
   { "jetbrains-phpstorm",          NULL,       NULL,                  2,           0,           -1,       0},
   { "whatsdesk",                   NULL,       NULL,                  1 << 2,      0,           -1,       0},
   { "Signal",                      NULL,       NULL,                  1 << 2,      0,           -1,       0},
   { "Slack",                       NULL,       NULL,                  1 << 2,      0,           -1,       0},
   { "Microsoft Teams - Preview",   NULL,       NULL,                  1 << 3,      0,           -1,       0},
   { "zoom",                        NULL,       NULL,                  1 << 3,      0,           -1,       0},
-  { "Dbeaver",                     NULL,       NULL,                  1 << 4,      0,           -1,       0},
+  { "DBeaver",                     NULL,       NULL,                  1 << 4,      0,           -1,       0},
   { "Insomnia",                    NULL,       NULL,                  1 << 5,      0,           -1,       0},
   { "Postman",                     NULL,       NULL,                  1 << 5,      0,           -1,       0},
   { "VirtualBox Manager",          NULL,       NULL,                  1 << 6,      0,           -1,       0},
@@ -76,20 +77,18 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#define XF86Search            0x1008ff1b
 #include "vanitygaps.c"
 #include <X11/XF86keysym.h>
+
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
 	{ "HHH",      grid },
-	{ "TTT",      bstack },
 	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
 	{ "[M]",      monocle },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -115,11 +114,6 @@ static const char *webcamscratchpadcmd[] = {"w", "mpv", "--title=", "webcamscrat
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show combi") },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("rofi-pass") },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = filecmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -128,7 +122,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_equal,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -151,47 +144,49 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 
   /* MOD +.....  KEYS */
-	{ MODKEY,                       XK_space,         spawn,             SHCMD("rofi -show combi") },
-	{ MODKEY,                       XK_s,             togglesticky,      {0} },
 	{ MODKEY,                       XK_t,             togglescratch,     {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_f,             togglefullscr,     {0} },
+	{ MODKEY,                       XK_space,         spawn,             SHCMD("~/.config/rofi/launcher/launcher.sh") },
+	{ MODKEY,                       XK_s,             togglesticky,      {0} },
   { MODKEY,                       XK_e,             spawn,             SHCMD("emacsclient -c -a ''") },
 	{ MODKEY,		                    XK_bracketright,  cyclelayout,       {.i = -1 } },
 	{ MODKEY,                       XK_bracketleft,   cyclelayout,       {.i = +1 } },
-	{ MODKEY,                       XK_grave,         togglescratch,     {.v = musicscratchpadcmd } },
+	{ MODKEY,                       XK_p,             spawn,             SHCMD("rofi-pass") },
+	{ MODKEY,                       XK_b,             spawn,             SHCMD("rofi-surfraw") },
+	{ MODKEY,                       XK_r,             quit,              {1} }, 
+	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
+	{ MODKEY,                       XK_q,             killclient,     {0} },
 
   /* MOD + SHIFT KEYS */
-	{ MODKEY|ShiftMask,             XK_b,  spawn,         SHCMD("rofi-surfraw") },
-	{ MODKEY|ShiftMask,             XK_v,  togglescratch,  {.v = vpnscratchpadcmd } },
-	{ MODKEY|ShiftMask,             XK_w,  togglescratch,  {.v = webcamscratchpadcmd } },
-	{ MODKEY|ShiftMask,             XK_j,  rotatestack,    {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,  rotatestack,    {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_r,  quit,              {1} }, 
+	{ MODKEY|ShiftMask,             XK_Return,        spawn,      {.v = filecmd } },
+	{ MODKEY|ShiftMask,             XK_b,             togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_v,             togglescratch,  {.v = vpnscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_w,             togglescratch,  {.v = webcamscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_m,             togglescratch,  {.v = musicscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_j,             rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,             rotatestack,    {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("flameshot gui")}, 
 
-  /* CONTROl + ALT KEYS */
-  { ControlMask|Mod1Mask,         XK_e,  spawn,         SHCMD("emacsclient -c -a ''") },
-  { ControlMask|Mod1Mask,         XK_m,  spawn,         SHCMD("emacsclient -c -a '' --eval '(mu4e)'") },
-  { ControlMask|Mod1Mask,         XK_a,  spawn,         SHCMD("emacsclient -c -a '' --eval '(itechytony/day-view)'") },
-  { ControlMask|Mod1Mask,         XK_s,  spawn,         SHCMD("slack") },
-  { ControlMask|Mod1Mask,         XK_t,  spawn,         SHCMD("teams") },
-  { ControlMask|Mod1Mask,         XK_p,  spawn,         SHCMD("pamac-manager") },
-  { ControlMask|Mod1Mask,         XK_f,  spawn,         SHCMD("firefox") },
-  { ControlMask|Mod1Mask,         XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
-  { ControlMask|Mod1Mask,         XK_b,  spawn,         SHCMD("brave") },
-  { ControlMask|Mod1Mask,         XK_w,  spawn,         SHCMD("whatsdesk") },
-  { ControlMask|Mod1Mask,         XK_d,  spawn,         SHCMD("dbeaver") },
-  { ControlMask|Mod1Mask,         XK_z,  spawn,         SHCMD("zoom") },
-  { ControlMask|Mod1Mask,         XK_i,  spawn,         SHCMD("insomnia") },
-  { ControlMask|Mod1Mask,         XK_c,  spawn,         SHCMD("rofi -show calc") },
-  { ControlMask|Mod1Mask,         XK_o,  spawn,         SHCMD("picom-toggle") },
-  { ControlMask|Mod1Mask,         XK_v,  spawn,         SHCMD("pavucontrol") },
 
-  /* ALT + SHIFT KEYS */
-  { Mod1Mask|ShiftMask,           XK_t,  spawn,         SHCMD("variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-  { Mod1Mask|ShiftMask,           XK_n,  spawn,         SHCMD("variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-  { Mod1Mask|ShiftMask,           XK_p,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-  { Mod1Mask|ShiftMask,           XK_f,  spawn,         SHCMD("variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
-  { Mod1Mask|ShiftMask,           XK_u,  spawn,         SHCMD("wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  /* SUPER + ALT KEYS */
+  { MODKEY|Mod1Mask,              XK_a,  spawn,         SHCMD("emacsclient -c -a '' --eval '(itechytony/day-view)'") },
+  { MODKEY|Mod1Mask,              XK_e,  spawn,         SHCMD("emacs") },
+  { MODKEY|Mod1Mask,              XK_m,  spawn,         SHCMD("xfce4-settings-manager") },
+  { MODKEY|Mod1Mask,              XK_s,  spawn,         SHCMD("slack") },
+  { MODKEY|Mod1Mask,              XK_t,  spawn,         SHCMD("teams") },
+  { MODKEY|Mod1Mask,              XK_p,  spawn,         SHCMD("pamac-manager") },
+  { MODKEY|Mod1Mask,              XK_v,  spawn,         SHCMD("pavucontrol") },
+  { MODKEY|Mod1Mask,              XK_f,  spawn,         SHCMD("firefox") },
+  { MODKEY|Mod1Mask,              XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
+  { MODKEY|Mod1Mask,              XK_q,  spawn,         SHCMD("qutebrowser") },
+  { MODKEY|Mod1Mask,              XK_b,  spawn,         SHCMD("brave") },
+  { MODKEY|Mod1Mask,              XK_w,  spawn,         SHCMD("whatsdesk") },
+  { MODKEY|Mod1Mask,              XK_d,  spawn,         SHCMD("dbeaver") },
+  { MODKEY|Mod1Mask,              XK_z,  spawn,         SHCMD("zoom") },
+  { MODKEY|Mod1Mask,              XK_i,  spawn,         SHCMD("insomnia-designer") },
+  { MODKEY|Mod1Mask,              XK_c,  spawn,         SHCMD("rofi -show calc") },
+  { MODKEY|Mod1Mask,              XK_o,  spawn,         SHCMD("picom-toggle") },
+  { MODKEY|Mod1Mask,              XK_n,  spawn,         SHCMD("nitrogen") },
 
   /* MULTIMEDIA KEYS */
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
@@ -209,6 +204,14 @@ static Key keys[] = {
   { 0, XF86XK_ScreenSaver,	        spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
   { 0, XF86XK_MonBrightnessUp,	    spawn,		SHCMD("xbacklight -inc 2") },
   { 0, XF86XK_MonBrightnessDown,    spawn,		SHCMD("xbacklight -dec 2") },
+
+  { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
+
+  { 0, XK_F7,       togglescratch,  {.v = vpnscratchpadcmd } },
+  { 0, XK_F8,       togglescratch,  {.v = musicscratchpadcmd } },
+  { 0, XF86Search,  spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
+  { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
+  { 0, XK_F11,      togglefullscr,  {0}},
 
   /* MISC KEYS */
   { ControlMask|Mod1Mask,         XK_Delete,  spawn,         SHCMD("xkill") },
