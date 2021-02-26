@@ -221,6 +221,8 @@ static Key keys[] = {
   { MODKEY|Mod1Mask,              XK_c,  spawn,         SHCMD("rofi -show calc") },
   { MODKEY|Mod1Mask,              XK_o,  spawn,         SHCMD("picom-toggle") },
   { MODKEY|Mod1Mask,              XK_n,  spawn,         SHCMD("nitrogen") },
+  { MODKEY|Mod1Mask,              XK_j,  spawn,         SHCMD("variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
+  { MODKEY|Mod1Mask,              XK_k,  spawn,         SHCMD("variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&") },
 
   /* MULTIMEDIA KEYS */
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
