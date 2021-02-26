@@ -85,10 +85,11 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "|M|",      centeredmaster },
-	{ "HHH",      grid },
-	{ "[@]",      spiral },
 	{ "[M]",      monocle },
+	{ "H[]",      deck },
+	{ "TTT",      bstack },
+	{ "###",      nrowgrid },
+	{ ":::",      gaplessgrid },
 };
 
 /* key definitions */
@@ -155,6 +156,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,             quit,              {1} }, 
 	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_q,             killclient,        {0} },
+	{ MODKEY,              XK_g,      togglegaps,     {0} },
 
   /* MOD + SHIFT KEYS */
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/powermenu/powermenu.sh") },
