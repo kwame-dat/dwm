@@ -124,7 +124,6 @@ static const char *vpnscratchpadcmd[] = {
   "/home/tonya/Documents/Work/3Resources/vpn/Connection.ovpn",
   NULL
 };
-
 static const char *webcamscratchpadcmd[] = {
   "w",
   "mplayer",
@@ -133,7 +132,6 @@ static const char *webcamscratchpadcmd[] = {
   "webcamScratchPad",
   NULL
 };
-
 static const char *runscopeScratchpadCmd[] = {
   "r",
   "alacritty",
