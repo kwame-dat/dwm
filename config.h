@@ -213,7 +213,7 @@ static Key keys[] = {
   { MODKEY|Mod1Mask,              XK_p,  spawn,         SHCMD("pamac-manager") },
   { MODKEY|Mod1Mask,              XK_v,  spawn,         SHCMD("pavucontrol") },
   { MODKEY|Mod1Mask,              XK_f,  spawn,         SHCMD("firefox") },
-  { MODKEY|Mod1Mask,              XK_g,  spawn,         SHCMD("chromium -no-default-browser-check") },
+  { MODKEY|Mod1Mask,              XK_g,  spawn,         SHCMD("google-chrome-stable -no-default-browser-check") },
   { MODKEY|Mod1Mask,              XK_q,  spawn,         SHCMD("qutebrowser") },
   { MODKEY|Mod1Mask,              XK_b,  spawn,         SHCMD("brave") },
   { MODKEY|Mod1Mask,              XK_w,  spawn,         SHCMD("whatsdesk") },
