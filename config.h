@@ -184,19 +184,20 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,         cyclelayout,       {.i = +1 } },
 	{ MODKEY,                       XK_p,             spawn,             SHCMD("rofi-pass") },
 	{ MODKEY,                       XK_b,             spawn,             SHCMD("rofi-surfraw") },
-	{ MODKEY,                       XK_r,             quit,              {1} }, 
+	/* { MODKEY,                    XK_r,             quit,              {1} },  */
 	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_q,             killclient,        {0} },
-	{ MODKEY,              XK_g,      togglegaps,     {0} },
+	{ MODKEY,                       XK_g,      togglegaps,     {0} },
 
   /* MOD + SHIFT KEYS */
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/powermenu/powermenu.sh") },
 	{ MODKEY|ShiftMask,             XK_Return,        spawn,             {.v = filecmd } },
 	{ MODKEY|ShiftMask,             XK_b,             togglebar,         {0} },
+	{ MODKEY|ShiftMask,             XK_a,             togglescratch,     {.v = runscopeScratchpadCmd } },
 	{ MODKEY|ShiftMask,             XK_v,             togglescratch,     {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,             togglescratch,     {.v = webcamscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,             togglescratch,     {.v = musicscratchpadcmd } },
-	{ MODKEY|ShiftMask,             XK_r,             togglescratch,     {.v = runscopeScratchpadCmd } },
+	{ MODKEY|ShiftMask,             XK_r,             quit,              {1} },
 	{ MODKEY|ShiftMask,             XK_j,             rotatestack,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,             rotatestack,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,             SHCMD("flameshot gui")}, 
@@ -243,8 +244,8 @@ static Key keys[] = {
 
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
 
-  { 0, XK_F7,       togglescratch,  {.v = vpnscratchpadcmd } },
-  { 0, XK_F8,       togglescratch,  {.v = musicscratchpadcmd } },
+  /* { 0, XK_F7,       togglescratch,  {.v = vpnscratchpadcmd } }, */
+  /* { 0, XK_F8,       togglescratch,  {.v = musicscratchpadcmd } }, */
   { 0, XF86Search,  spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
   { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
   { 0, XK_F11,      togglefullscr,  {0}},
