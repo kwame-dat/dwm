@@ -14,11 +14,11 @@ static const unsigned int gappov    = 40;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = {"JetBrains Mono:size=8",
+static const char *fonts[]              = {"Cascadia Code:size=10",
                                         "JoyPixels:size=8:antialias=true:autohint=true",
                                         "FontAwesome:size=8:antialias=true:autohint=true",
                                         };
-static const char dmenufont[]       = "JetBrains Mono:size=8";
+static const char dmenufont[]       = "Cascadia Code:size=10";
 static const char col_gray1[]           = "#0b1c2c";
 static const char col_gray2[]           = "#1a1a1a";
 static const char col_gray3[]           = "#96b5B4";
@@ -232,8 +232,8 @@ static Key keys[] = {
 
   /* MULTIMEDIA KEYS */
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
-  { 0, XF86XK_AudioRaiseVolume,	    spawn,		SHCMD("amixer -q set Master 2%+") },
-  { 0, XF86XK_AudioLowerVolume,	    spawn,		SHCMD("amixer -q set Master 2%-") },
+  { 0, XF86XK_AudioRaiseVolume,	    spawn,		SHCMD("amixer -q set Master 10%+") },
+  { 0, XF86XK_AudioLowerVolume,	    spawn,		SHCMD("amixer -q set Master 10%-") },
   { 0, XF86XK_AudioPrev,		        spawn,		SHCMD("playerctl previous") },
   { 0, XF86XK_AudioNext,		        spawn,		SHCMD("playerctl next") },
   { 0, XF86XK_AudioPause,		        spawn,		SHCMD("playerctl play-pause") },
@@ -244,8 +244,8 @@ static Key keys[] = {
   { 0, XF86XK_AudioMicMute,	        spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
   { 0, XF86XK_PowerOff,		          spawn,		SHCMD("sysact") },
   { 0, XF86XK_ScreenSaver,	        spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
-  { 0, XF86XK_MonBrightnessUp,	    spawn,		SHCMD("xbacklight -inc 2") },
-  { 0, XF86XK_MonBrightnessDown,    spawn,		SHCMD("xbacklight -dec 2") },
+  { 0, XF86XK_MonBrightnessUp,	    spawn,		SHCMD("xbacklight -inc 10") },
+  { 0, XF86XK_MonBrightnessDown,    spawn,		SHCMD("xbacklight -dec 10") },
 
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
 
