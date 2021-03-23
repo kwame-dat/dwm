@@ -7,9 +7,6 @@ function run {
   fi
 }
 
-# cursor active at boot
-xsetroot -cursor_name left_ptr &
-
 # Setup my Touchpad to my liking
 xinput --set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1 &
 xinput --set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1 &
@@ -31,12 +28,11 @@ xrdb ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
-run variety &
 run nm-applet &
-run xfce4-power-manager &
 run picom &
 run dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+run variety &
 xmodmap ~/.Xmodmap &
 run dwmblocks &
 
@@ -44,6 +40,4 @@ run dwmblocks &
 run /usr/bin/emacs --daemon &
 run copyq &
 run nextcloud &
-run syncthing -no-browser &
 run kdeconnect-indicator &
-sudo mount -a &
