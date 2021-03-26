@@ -13,3 +13,4 @@
 - restartsig
 - focusonnetactive
 - alwayscenter
+- noborder
