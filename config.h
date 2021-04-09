@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -19,17 +19,20 @@ static const char *fonts[]              = {"Cascadia Code:size=10",
                                         "FontAwesome:size=8:antialias=true:autohint=true",
                                         };
 static const char dmenufont[]       = "Cascadia Code:size=10";
-static const char col_gray1[]           = "#0b1c2c";
+static const char col_bg[]              = "#1d1f21";
+static const char col_bg_alt[]          = "#161719";
+static const char col_gray1[]           = "#1d1f21";
 static const char col_gray2[]           = "#1a1a1a";
-static const char col_gray3[]           = "#96b5B4";
+static const char col_gray3[]           = "#5a5b5a";
 static const char col_gray4[]           = "#d7d7d7";
-static const char col_blue[]            = "#9765F4";
-static const char col_red[]             = "#8f3d3d";
-static const char col_yellow[]          = "#b38c00";
+static const char col_blue[]            = "#6200EE";
+static const char col_red[]             = "#cc6666";
+static const char col_yellow[]          = "#f0c674";
+static const char col_orange[]          = "#de935f";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_red,  col_blue  },
+	/*               fg              bg                border   */
+	[SchemeNorm] = { col_gray4,      col_bg,           col_bg },
+	[SchemeSel]  = { col_bg_alt,     col_yellow,       col_blue  },
 };
 
 /* tagging */
