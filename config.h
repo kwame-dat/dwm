@@ -255,6 +255,11 @@ static Key keys[] = {
   { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
   { 0, XK_F11,      togglefullscr,  {0}},
 
+  /* FUNCTIONS KEYS */
+  { 0, XK_F5,      spawn,  SHCMD("maim ~/Downloads/screenshot_$(date +%s).png")},
+  { 0, XK_F6,      spawn,  SHCMD("maim -i $(xdotool getactivewindow) ~/Downloads/screenshot_$(date +%s).jpg")},
+  { 0, XK_F7,      spawn,  SHCMD("maim -s | xclip -selection clipboard -t image/png")},
+
   /* MISC KEYS */
   { ControlMask|Mod1Mask,         XK_Delete,  spawn,         SHCMD("xkill") },
 };
