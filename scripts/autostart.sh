@@ -41,3 +41,4 @@ run /usr/bin/emacs --daemon &
 run copyq &
 run nextcloud &
 run kdeconnect-indicator &
+run redshift &
