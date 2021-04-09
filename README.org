@@ -14,3 +14,4 @@
 - focusonnetactive
 - alwayscenter
 - noborder
+- pertag
