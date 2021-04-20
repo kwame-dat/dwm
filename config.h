@@ -19,20 +19,16 @@ static const char *fonts[]              = {"Noto Sans:size=10",
                                         "FontAwesome:size=10:antialias=true:autohint=true",
                                         };
 static const char dmenufont[]       = "Noto Sans:size=10";
-static const char col_bg[]              = "#1E2127";
-static const char col_bg_alt[]          = "#161719";
-static const char col_gray1[]           = "#1d1f21";
-static const char col_gray2[]           = "#1a1a1a";
-static const char col_gray3[]           = "#5a5b5a";
-static const char col_gray4[]           = "#d7d7d7";
-static const char col_blue[]            = "#61AFEF";
-static const char col_red[]             = "#cc6666";
-static const char col_yellow[]          = "#f0c674";
-static const char col_orange[]          = "#de935f";
-static const char *colors[][3]      = {
-	/*               fg              bg                border   */
-	[SchemeNorm] = { col_gray4,      col_bg,           col_bg },
-	[SchemeSel]  = { col_bg,      col_blue,       col_blue  },
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -113,7 +109,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *filecmd[]  = { "thunar", NULL };
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchPad", NULL}; 
@@ -196,6 +192,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,             killclient,        {0} },
 	{ MODKEY,                       XK_g,      togglegaps,     {0} },
   { MODKEY,                       XK_Escape,  spawn,         SHCMD("xkill") },
+	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 
   /* MOD + SHIFT KEYS */
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/powermenu/powermenu.sh") },
