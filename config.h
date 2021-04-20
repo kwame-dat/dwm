@@ -14,25 +14,25 @@ static const unsigned int gappov    = 40;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = {"Cascadia Code:size=10",
-                                        "JoyPixels:size=8:antialias=true:autohint=true",
-                                        "FontAwesome:size=8:antialias=true:autohint=true",
+static const char *fonts[]              = {"Noto Sans:size=10",
+                                        "JoyPixels:size=10:antialias=true:autohint=true",
+                                        "FontAwesome:size=10:antialias=true:autohint=true",
                                         };
-static const char dmenufont[]       = "Cascadia Code:size=10";
-static const char col_bg[]              = "#1d1f21";
+static const char dmenufont[]       = "Noto Sans:size=10";
+static const char col_bg[]              = "#1E2127";
 static const char col_bg_alt[]          = "#161719";
 static const char col_gray1[]           = "#1d1f21";
 static const char col_gray2[]           = "#1a1a1a";
 static const char col_gray3[]           = "#5a5b5a";
 static const char col_gray4[]           = "#d7d7d7";
-static const char col_blue[]            = "#6200EE";
+static const char col_blue[]            = "#61AFEF";
 static const char col_red[]             = "#cc6666";
 static const char col_yellow[]          = "#f0c674";
 static const char col_orange[]          = "#de935f";
 static const char *colors[][3]      = {
 	/*               fg              bg                border   */
 	[SchemeNorm] = { col_gray4,      col_bg,           col_bg },
-	[SchemeSel]  = { col_bg_alt,     col_yellow,       col_blue  },
+	[SchemeSel]  = { col_bg,      col_blue,       col_blue  },
 };
 
 /* tagging */
@@ -195,6 +195,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_q,             killclient,        {0} },
 	{ MODKEY,                       XK_g,      togglegaps,     {0} },
+  { MODKEY,                       XK_Escape,  spawn,         SHCMD("xkill") },
 
   /* MOD + SHIFT KEYS */
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/powermenu/powermenu.sh") },
@@ -251,8 +252,6 @@ static Key keys[] = {
 
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
 
-  /* { 0, XK_F7,       togglescratch,  {.v = vpnscratchpadcmd } }, */
-  /* { 0, XK_F8,       togglescratch,  {.v = musicscratchpadcmd } }, */
   { 0, XF86Search,  spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
   { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
   { 0, XK_F11,      togglefullscr,  {0}},
