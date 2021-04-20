@@ -29,16 +29,15 @@ xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
 run nm-applet &
-run picom &
 run dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-run variety &
-xmodmap ~/.Xmodmap &
+run xmodmap ~/.Xmodmap &
 run dwmblocks &
+run variety &
+run picom &
 
 # starting user applications at boot time
 run /usr/bin/emacs --daemon &
-run copyq &
 run nextcloud &
 run kdeconnect-indicator &
 run redshift &
