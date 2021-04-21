@@ -32,7 +32,6 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-/* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
 static const char *tags[] = { "", "", "️","", "", "️",  "", "", "" };
 
 static const Rule rules[] = {
@@ -73,6 +72,7 @@ static const Rule rules[] = {
 	{ NULL,                          NULL,       "vpnScratchPad",           0,           1,           -1,       'v'},
 	{ NULL,                          NULL,       "webcamScratchPad",        0,           1,           -1,       'w'},
 	{ NULL,                          NULL,       "runscopeScratchPad",      0,           1,           -1,       'r'},
+	{ NULL,                          NULL,       "yubioathScratchPadcmd",   0,           1,           -1,       'y'},
 };
 
 /* layout(s) */
@@ -115,6 +115,8 @@ static const char *filecmd[]  = { "thunar", NULL };
 static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchPad", NULL}; 
 static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicScratchPad", "-e", "ncmpcpp", NULL}; 
 
+static const char *yubioathScratchPadcmd[] = {"s", "yubioath-desktop", NULL}; 
+
 static const char *vpnscratchpadcmd[] = {
   "v",
   "alacritty",
@@ -127,6 +129,7 @@ static const char *vpnscratchpadcmd[] = {
   "/home/tonya/Documents/Work/3Resources/vpn/Connection.ovpn",
   NULL
 };
+
 static const char *webcamscratchpadcmd[] = {
   "w",
   "mplayer",
@@ -135,6 +138,7 @@ static const char *webcamscratchpadcmd[] = {
   "webcamScratchPad",
   NULL
 };
+
 static const char *runscopeScratchpadCmd[] = {
   "r",
   "alacritty",
@@ -187,12 +191,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,         cyclelayout,       {.i = +1 } },
 	{ MODKEY,                       XK_p,             spawn,             SHCMD("~/.config/rofi/launcher-pass.sh") },
 	{ MODKEY,                       XK_b,             spawn,             SHCMD("~/.config/rofi/launcher-bookmark.sh") },
-	/* { MODKEY,                    XK_r,             quit,              {1} },  */
 	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_q,             killclient,        {0} },
-	{ MODKEY,                       XK_g,      togglegaps,     {0} },
-  { MODKEY,                       XK_Escape,  spawn,         SHCMD("xkill") },
-	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
+	{ MODKEY,                       XK_g,             togglegaps,        {0} },
+  { MODKEY,                       XK_Escape,        spawn,             SHCMD("xkill") },
+	{ MODKEY,                       XK_F5,            xrdb,              {.v = NULL } },
 
   /* MOD + SHIFT KEYS */
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/powermenu/powermenu.sh") },
@@ -202,10 +205,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,             togglescratch,     {.v = vpnscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_w,             togglescratch,     {.v = webcamscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_m,             togglescratch,     {.v = musicscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_y,             togglescratch,     {.v = yubioathScratchPadcmd } },
 	{ MODKEY|ShiftMask,             XK_r,             quit,              {1} },
 	{ MODKEY|ShiftMask,             XK_j,             rotatestack,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,             rotatestack,       {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_s,             spawn,             SHCMD("flameshot gui")}, 
+	{ MODKEY|ShiftMask,             XK_s,             spawn,             SHCMD("maim -s | xclip -selection clipboard -t image/png")}, 
 
 
   /* SUPER + ALT KEYS */
@@ -278,4 +282,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
