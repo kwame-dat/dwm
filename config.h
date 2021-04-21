@@ -180,13 +180,13 @@ static Key keys[] = {
   /* MOD +.....  KEYS */
 	{ MODKEY,                       XK_t,             togglescratch,     {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_f,             togglefullscr,     {0} },
-	{ MODKEY,                       XK_space,         spawn,             SHCMD("~/.config/rofi/launcher/launcher.sh") },
+	{ MODKEY,                       XK_space,         spawn,             SHCMD("~/.config/rofi/launcher.sh") },
 	{ MODKEY,                       XK_s,             togglesticky,      {0} },
   { MODKEY,                       XK_e,             spawn,             SHCMD("emacsclient -c -a ''") },
 	{ MODKEY,		                    XK_BackSpace,     cyclelayout,       {.i = -1 } },
 	{ MODKEY,                       XK_grave,         cyclelayout,       {.i = +1 } },
-	{ MODKEY,                       XK_p,             spawn,             SHCMD("rofi-pass") },
-	{ MODKEY,                       XK_b,             spawn,             SHCMD("rofi-surfraw") },
+	{ MODKEY,                       XK_p,             spawn,             SHCMD("~/.config/rofi/launcher-pass.sh") },
+	{ MODKEY,                       XK_b,             spawn,             SHCMD("~/.config/rofi/launcher-bookmark.sh") },
 	/* { MODKEY,                    XK_r,             quit,              {1} },  */
 	{ MODKEY,                       XK_Return,        spawn,             {.v = termcmd } },
 	{ MODKEY,                       XK_q,             killclient,        {0} },
@@ -249,8 +249,8 @@ static Key keys[] = {
 
   { 0, XF86XK_AudioMute,		        spawn,		SHCMD("amixer -q set Master toggle") },
 
-  { 0, XF86Search,  spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
-  { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher/launcher.sh") },
+  { 0, XF86Search,  spawn,          SHCMD("~/.config/rofi/launcher.sh") },
+  { 0, XK_F9,       spawn,          SHCMD("~/.config/rofi/launcher.sh") },
   { 0, XK_F11,      togglefullscr,  {0}},
 
   /* FUNCTIONS KEYS */
