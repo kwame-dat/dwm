@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -14,11 +14,11 @@ static const unsigned int gappov    = 60;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = {"NotoSansMono Nerd Font:size=9",
-                                        "JoyPixels:size=9:antialias=true:autohint=true",
-                                        "FontAwesome:size=9:antialias=true:autohint=true",
+static const char *fonts[]              = {"Anonymous Pro :size=10",
+                                        "JoyPixels:size=10:antialias=true:autohint=true",
+                                        "FontAwesome:size=10:antialias=true:autohint=true",
                                         };
-static const char dmenufont[]       = "NotoSansMono Nerd Font:size=9";
+static const char dmenufont[]       = "Anonymous Pro:size=10";
 static char normbgcolor[]           = "#1d1f21";
 static char normbordercolor[]       = "#bbbbbb";
 static char normfgcolor[]           = "#bbbbbb";
@@ -32,7 +32,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "","", "", "",  "", "", "" };
+static const char *tags[] = { "", "", "","", "", "",  "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,27 +49,29 @@ static const Rule rules[] = {
         { "Brave-browser",               NULL,       NULL,                      1,           0,           -1,       0},
         { "Firefox",                     NULL,       NULL,                      1,           0,           -1,       0},
         { "Emacs",                       NULL,       NULL,                      2,           0,           -1,       0},
+        { "code-oss",                    NULL,       NULL,                      2,           0,           -1,       0},
         { "jetbrains-phpstorm",          NULL,       NULL,                      2,           0,           -1,       0},
         { "whatsdesk",                   NULL,       NULL,                      1 << 2,      0,           -1,       0},
         { "Signal",                      NULL,       NULL,                      1 << 2,      0,           -1,       0},
         { "TelegramDesktop",             NULL,       NULL,                      1 << 2,      0,           -1,       0},
         { "Slack",                       NULL,       NULL,                      1 << 2,      0,           -1,       0},
         { "Microsoft Teams - Preview",   NULL,       NULL,                      1 << 2,      0,           -1,       0},
-        { "zoom",                        NULL,       NULL,                      1 << 3,      0,           -1,       0},
-        { "Jitsi Meet",                  NULL,       NULL,                      1 << 3,      0,           -1,       0},
+        { "zoom",                        NULL,       NULL,                      1 << 2,      0,           -1,       0},
+        { "Skype",                       NULL,       NULL,                      1 << 2,      0,           -1,       0},
+        { "Jitsi Meet",                  NULL,       NULL,                      1 << 2,      0,           -1,       0},
+        { "calibre",                     NULL,       NULL,                      1 << 3,      0,           -1,       0},
+        { "Evince",                      NULL,       NULL,                      1 << 3,      0,           -1,       0},
         { "DBeaver",                     NULL,       NULL,                      1 << 4,      0,           -1,       0},
         { "Insomnia",                    NULL,       NULL,                      1 << 5,      0,           -1,       0},
         { "Insomnia Designer",           NULL,       NULL,                      1 << 5,      0,           -1,       0},
         { "Stoplight Studio",            NULL,       NULL,                      1 << 5,      0,           -1,       0},
         { "Postman",                     NULL,       NULL,                      1 << 5,      0,           -1,       0},
-        { "VirtualBox Manager",          NULL,       NULL,                      1 << 6,      0,           -1,       0},
-        { "calibre",                     NULL,       NULL,                      1 << 6,      0,           -1,       0},
+        { "obs",                         NULL,       NULL,                      1 << 6,      0,           -1,       0},
         { "Steam",                       NULL,       NULL,                      1 << 7,      0,           -1,       0},
+        { "VirtualBox Manager",          NULL,       NULL,                      1 << 8,      0,           -1,       0},
         { "Nextcloud",                   NULL,       NULL,                      1 << 8,      0,           -1,       0},
-        { "obs",                         NULL,       NULL,                      1 << 8,      0,           -1,       0},
 	{ NULL,                          NULL,       "scratchPad",              0,           1,           -1,       's'},
 	{ NULL,                          NULL,       "musicScratchPad",         0,           1,           -1,       'm'},
-	{ NULL,                          NULL,       "vpnScratchPad",           0,           1,           -1,       'v'},
 	{ NULL,                          NULL,       "webcamScratchPad",        0,           1,           -1,       'w'},
 	{ NULL,                          NULL,       "runscopeScratchPad",      0,           1,           -1,       'r'},
 	{ NULL,                          NULL,       "yubioathScratchPadcmd",   0,           1,           -1,       'y'},
@@ -116,19 +118,6 @@ static const char *scratchpadcmd[] = {"s", "alacritty", "-t", "scratchPad", NULL
 static const char *musicscratchpadcmd[] = {"m", "alacritty", "-t", "musicScratchPad", "-e", "ncmpcpp", NULL}; 
 
 static const char *yubioathScratchPadcmd[] = {"s", "yubioath-desktop", NULL}; 
-
-static const char *vpnscratchpadcmd[] = {
-  "v",
-  "alacritty",
-  "--title",
-  "vpnScratchPad",
-  "--command",
-  "sudo",
-  "openvpn",
-  "--config",
-  "/home/tonya/Documents/Work/3Resources/vpn/Connection.ovpn",
-  NULL
-};
 
 static const char *webcamscratchpadcmd[] = {
   "w",
@@ -202,7 +191,6 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_Return,        spawn,             {.v = filecmd } },
   { MODKEY|ShiftMask,             XK_b,             togglebar,         {0} },
   { MODKEY|ShiftMask,             XK_a,             togglescratch,     {.v = runscopeScratchpadCmd } },
-  { MODKEY|ShiftMask,             XK_v,             togglescratch,     {.v = vpnscratchpadcmd } },
   { MODKEY|ShiftMask,             XK_w,             togglescratch,     {.v = webcamscratchpadcmd } },
   { MODKEY|ShiftMask,             XK_m,             togglescratch,     {.v = musicscratchpadcmd } },
   { MODKEY|ShiftMask,             XK_y,             togglescratch,     {.v = yubioathScratchPadcmd } },
@@ -235,8 +223,8 @@ static Key keys[] = {
 
   /* MULTIMEDIA KEYS */
   { 0, XF86XK_AudioMute,	         spawn,		SHCMD("amixer -q set Master toggle") },
-  { 0, XF86XK_AudioRaiseVolume,	         spawn,		SHCMD("amixer -q set Master 10%+") },
-  { 0, XF86XK_AudioLowerVolume,	         spawn,		SHCMD("amixer -q set Master 10%-") },
+  { 0, XF86XK_AudioRaiseVolume,	         spawn,		SHCMD("amixer -q set Master 5%+") },
+  { 0, XF86XK_AudioLowerVolume,	         spawn,		SHCMD("amixer -q set Master 5%-") },
   { 0, XF86XK_AudioPrev,	         spawn,		SHCMD("playerctl previous") },
   { 0, XF86XK_AudioNext,	         spawn,		SHCMD("playerctl next") },
   { 0, XF86XK_AudioPause,	         spawn,		SHCMD("playerctl play-pause") },
@@ -247,8 +235,8 @@ static Key keys[] = {
   { 0, XF86XK_AudioMicMute,	         spawn,		SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
   { 0, XF86XK_PowerOff,		         spawn,		SHCMD("sysact") },
   { 0, XF86XK_ScreenSaver,	         spawn,		SHCMD("slock & xset dpms force off; mpc pause; pauseallmpv") },
-  { 0, XF86XK_MonBrightnessUp,	         spawn,		SHCMD("light -A 5") },
-  { 0, XF86XK_MonBrightnessDown,         spawn,		SHCMD("light -U 5") },
+  { 0, XF86XK_MonBrightnessUp,	         spawn,		SHCMD("light -A 1") },
+  { 0, XF86XK_MonBrightnessDown,         spawn,		SHCMD("light -U 1") },
   { 0, XF86XK_AudioMute,		 spawn,		SHCMD("amixer -q set Master toggle") },
   { 0, XF86Search,                       spawn,         SHCMD("~/.config/rofi/launcher.sh") },
   { 0, XK_F9,                            spawn,         SHCMD("~/.config/rofi/launcher.sh") },
@@ -261,9 +249,6 @@ static Key keys[] = {
 /* ### SCREENSHOT BINDINGS */
 /* ###################################################################################### */
 /* # Printscreen keybindings */
-/* bindsym Print exec grim -g "$(slurp)" - | swappy -f - */
-/* bindsym $mod+Print exec grim -g "$(slurp -d)" - | wl-copy */
-/* bindsym Alt+Print exec grim $HOME/Downloads/$(date +'%s_grim.png') */
 /* # F7 keybindings */
 /* bindsym F7 exec grim -g "$(slurp)" - | swappy -f - */
 /* bindsym $mod+F7 exec grim -g "$(slurp -d)" - | wl-copy */
