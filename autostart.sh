@@ -28,18 +28,16 @@ xrdb ~/.Xresources &
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
-run variety &
 run nm-applet &
 run dunst &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 run xmodmap ~/.Xmodmap &
 run xbindkeys -f ~/.xbindkeysrc &
-run picom &
+run variety &
+run picom --experimental-backends &
 run dwmblocks &
 
-
-# # starting user applications at boot time
-run xbindkeys -f ~/.xbindkeysrc &
+# starting user applications at boot time
 run /usr/bin/emacs --daemon &
 run nextcloud &
 run kdeconnect-indicator &
