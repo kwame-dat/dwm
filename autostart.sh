@@ -40,5 +40,8 @@ run dwmblocks &
 # starting user applications at boot time
 run /usr/bin/emacs --daemon &
 run nextcloud &
-run kdeconnect-indicator &
 run redshift &
+run caffeine &
+run telegram-desktop &
+# autorandr --change &
+# run slack &
