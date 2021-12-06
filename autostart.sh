@@ -22,8 +22,6 @@ xcape -e 'Control_L=Escape'
 ## Increase keyboard key repeat
 xset r rate 300 80 &
 
-xrdb ~/.Xresources &
-
 # Cursor active at boot
 xsetroot -cursor_name left_ptr &
 
@@ -42,6 +40,4 @@ run /usr/bin/emacs --daemon &
 run nextcloud &
 run redshift &
 run caffeine &
-run telegram-desktop &
-# autorandr --change &
-# run slack &
+run autorandr --change &
