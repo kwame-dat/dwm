@@ -14,7 +14,7 @@ static const unsigned int gappov    = 60;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]              = {"Monolisa :size=9",
+static const char *fonts[]              = {"Monolisa :size=10",
                                         "JoyPixels:size=10:antialias=true:autohint=true",
                                         "FontAwesome:size=10:antialias=true:autohint=true",
                                         };
@@ -126,18 +126,6 @@ static const char *webcamscratchpadcmd[] = {
   NULL
 };
 
-static const char *runscopeScratchpadCmd[] = {
-  "r",
-  "alacritty",
-  "--title",
-  "runscopeScratchPad",
-  "--command",
-  "runscope-radar",
-  "-f",
-  "/home/tonya/Documents/Work/3Resources/runscope/radar.conf",
-  NULL
-};
-
 static Key keys[] = {
    /* modifier                     key        function        argument */
    { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -188,7 +176,6 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_e,             spawn,             SHCMD("~/.config/rofi/power-menu.sh") },
   { MODKEY|ShiftMask,             XK_Return,        spawn,             {.v = filecmd } },
   { MODKEY|ShiftMask,             XK_b,             togglebar,         {0} },
-  { MODKEY|ShiftMask,             XK_a,             togglescratch,     {.v = runscopeScratchpadCmd } },
   { MODKEY|ShiftMask,             XK_w,             togglescratch,     {.v = webcamscratchpadcmd } },
   { MODKEY|ShiftMask,             XK_m,             togglescratch,     {.v = musicscratchpadcmd } },
   { MODKEY|ShiftMask,             XK_y,             togglescratch,     {.v = yubioathScratchPadcmd } },
