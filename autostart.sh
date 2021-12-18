@@ -1,5 +1,4 @@
 #!/bin/bash
-
 function run {
   if ! pgrep $1 ;
   then
@@ -26,18 +25,15 @@ xset r rate 300 80 &
 xsetroot -cursor_name left_ptr &
 
 # Starting utility applications at boot time
-run nm-applet &
-run dunst &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-run xmodmap ~/.Xmodmap &
-run xbindkeys -f ~/.xbindkeysrc &
-run variety &
-run picom --experimental-backends &
-run dwmblocks &
-
-# starting user applications at boot time
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+run dwmblocks
+run dunst
+run picom --experimental-backends
+run xbindkeys -f ~/.xbindkeysrc
+# run variety
+run caffeine -a
+################ Start Apps At Boot Time ###################
 run /usr/bin/emacs --daemon &
+run solaar -w hide
 run nextcloud &
 run redshift &
-run caffeine &
-run autorandr --change &
